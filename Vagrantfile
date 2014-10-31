@@ -17,6 +17,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       d.image  = 'abevoelker/postgres'
       d.name   = 'djangoapp_postgres'
       d.ports  = ['5432:5432']
+      d.vagrant_machine = "#{DOCKER_HOST_NAME}"
+      d.vagrant_vagrantfile = "#{DOCKER_HOST_VAGRANTFILE}"
     end
   end
 
@@ -25,6 +27,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       d.build_dir = "."
       d.name            = 'djangoapp_web'
       d.ports           = ['8080:8080']
+      d.vagrant_machine = "#{DOCKER_HOST_NAME}"
+      d.vagrant_vagrantfile = "#{DOCKER_HOST_VAGRANTFILE}"
 
       d.link('djangoapp_postgres:postgres')
     end
