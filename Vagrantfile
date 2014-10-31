@@ -1,6 +1,10 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+ENV['VAGRANT_DEFAULT_PROVIDER'] = 'docker'
+DOCKER_HOST_NAME = "dockerhost"
+DOCKER_HOST_VAGRANTFILE = "./DockerHostVagrantfile"
+
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
@@ -20,11 +24,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     djangoapp.vm.provider 'docker' do |d|
       d.build_dir = "."
       d.name            = 'djangoapp_web'
-      d.ports           = ['8000:8000']
+      d.ports           = ['8080:8080']
 
       d.link('djangoapp_postgres:postgres')
     end
 
-    #djangoapp.vm.synced_folder ".", "/var/www" #, owner: 'web', group: 'web'
+    djangoapp.vm.synced_folder ".", "/var/www" #, owner: 'web', group: 'web'
   end
 end
