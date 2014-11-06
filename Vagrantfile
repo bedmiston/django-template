@@ -1,7 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-ENV['VAGRANT_DEFAULT_PROVIDER'] = 'docker'
 DOCKER_HOST_NAME = "dockerhost"
 DOCKER_HOST_VAGRANTFILE = "./DockerHostVagrantfile"
 
